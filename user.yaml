@@ -1,0 +1,127 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Swagger redmine"
+host: "localhost"
+basePath: "/api"
+tags:
+- name: "user"
+  description: "crud simples e completo"
+schemes:
+- "http"
+paths:
+  /user:
+    get:
+      tags:
+      - "user"
+      summary: "Get all user info"
+      description: "Get all user info"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "ok"
+          schema:
+            type: "array"
+            items: {
+               $ref: "#/definitions/User"
+            }
+        404:
+          description: "User not found"
+    post:
+      tags:
+      - "user"
+      summary: "Add a new user to the store"
+      description: "Add a new user to the store"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "Created"        
+          
+  /user/{userId}:
+    get:
+      tags:
+      - "user"
+      summary: "Find user by ID"
+      description: "Find user by ID"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "ok"
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: "User not found"
+    put:
+      tags:
+      - "user"
+      summary: "Update an existing user"
+      description: "Update an existing user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "string"  
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "User updated"
+        404:
+          description: "User not found"  
+          
+    delete:
+      tags:
+      - "user"
+      summary: "Delete a user"
+      description: "Delete a user"
+      operationId: "userId"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Deleted"
+        404:
+          description: "User not found"
+   
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      photoUrl:
+        type: "string"
