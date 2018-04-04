@@ -37,7 +37,7 @@
                 }
             }
         },
-        "/freights/finda/{id}": {
+        "/freights/find/{id}": {
             "get": {
                 "tags": [
                     "Freight"
@@ -49,7 +49,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": "id",
                         "required": true,
                         "type": "string"
@@ -74,7 +74,7 @@
                 "parameters": [
                     {
                         "name": "origin",
-                        "in": "query",
+                        "in": "path",
                         "description": "origin",
                         "required": true,
                         "type": "string"
