@@ -1,0 +1,141 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Multicargo Api",
+        "description": "Api description...",
+        "termsOfService": "",
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Logar usu\u00e1rio",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "email e senha",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/user/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Registrar usu\u00e1rio",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Registrar usu\u00e1rio",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/user/info": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Obter dados usu\u00e1rio",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "properties": {
+                "name": {
+                    "description": "Nome do usu\u00e1rio",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Email do usu\u00e1rio",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "Cidade do usu\u00e1rio",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "Estado do usu\u00e1rio",
+                    "type": "string"
+                },
+                "country": {
+                    "description": "Estado do usu\u00e1rio",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Senha do usu\u00e1rio",
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "properties": {
+                "email": {
+                    "description": "Email do usu\u00e1rio",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Senha do usu\u00e1rio",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about my website",
+        "url": "http://localhost:8080"
+    }
+}
