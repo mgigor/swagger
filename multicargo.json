@@ -12,6 +12,108 @@
         "http"
     ],
     "paths": {
+        "/freights/findall/": {
+            "get": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Obter todos os fretes",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Api-Token",
+                        "in": "header",
+                        "description": "api-token",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/freights/finda/{id}": {
+            "get": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Obter frete por id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/freights/sync/{origin}": {
+            "get": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Obter todos as url para sync do crawler",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "origin",
+                        "in": "query",
+                        "description": "origin",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/freights/create/": {
+            "post": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Adiciona novo frete",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "frete",
+                        "in": "body",
+                        "description": "Adicionar frete",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Freights"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/users/login": {
             "post": {
                 "tags": [
@@ -77,9 +179,9 @@
                 ],
                 "parameters": [
                     {
-                        "name": "token",
+                        "name": "Api-Token",
                         "in": "header",
-                        "description": "token",
+                        "description": "api-token",
                         "required": true,
                         "type": "string"
                     }
@@ -93,6 +195,96 @@
         }
     },
     "definitions": {
+        "Freights": {
+            "properties": {
+                "distance": {
+                    "description": "Distancia do frete",
+                    "type": "number"
+                },
+                "weight": {
+                    "description": "Peso do frete",
+                    "type": "number"
+                },
+                "price": {
+                    "description": "Preco do frete",
+                    "type": "number"
+                },
+                "currency_type": {
+                    "description": "Tipo da moeda",
+                    "type": "string"
+                },
+                "weight_type": {
+                    "description": "Peso do frete",
+                    "type": "string"
+                },
+                "price_by": {
+                    "description": "Tipo do pre\u00e7o do frete",
+                    "type": "string"
+                },
+                "product_type": {
+                    "description": "Tipo do produto",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Descri\u00e7\u00e3o do frete",
+                    "type": "string"
+                },
+                "link": {
+                    "description": "Link do frete",
+                    "type": "string"
+                },
+                "pickup_city": {
+                    "description": "Cidade origem",
+                    "type": "string"
+                },
+                "pickup_state": {
+                    "description": "Estado origem",
+                    "type": "string"
+                },
+                "pickup_country": {
+                    "description": "Pa\u00eds origem",
+                    "type": "string"
+                },
+                "pickup_date": {
+                    "description": "Data de coleta",
+                    "type": "string"
+                },
+                "delivery_city": {
+                    "description": "Cidade destino",
+                    "type": "string"
+                },
+                "delivery_state": {
+                    "description": "Estado destino",
+                    "type": "string"
+                },
+                "delivery_country": {
+                    "description": "Pais destino",
+                    "type": "string"
+                },
+                "delivery_date": {
+                    "description": "Data de entrega",
+                    "type": "string"
+                },
+                "origin_info": {
+                    "description": "Nome do site",
+                    "type": "string"
+                },
+                "truck_type": {
+                    "description": "Tipo do veiculo",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "body_type": {
+                    "description": "Tipo da carroceria",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "User": {
             "properties": {
                 "name": {
@@ -112,7 +304,7 @@
                     "type": "string"
                 },
                 "country": {
-                    "description": "Estado do usu\u00e1rio",
+                    "description": "Pa\u00eds do usu\u00e1rio",
                     "type": "string"
                 },
                 "password": {
