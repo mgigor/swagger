@@ -114,6 +114,83 @@
                 }
             }
         },
+        "/freights/create/pack": {
+            "post": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Adiciona conjuntos de frete",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "frete",
+                        "in": "body",
+                        "description": "Adicionar frete",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FreightsPack"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/freights/create/{id}": {
+            "put": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Alterar frete",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/freights/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Freight"
+                ],
+                "summary": "Deletar frete por id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/users/login": {
             "post": {
                 "tags": [
@@ -285,6 +362,17 @@
                 }
             }
         },
+        "FreightsPack": {
+            "properties": {
+                "freights": {
+                    "description": "Frtes",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Freights"
+                    }
+                }
+            }
+        },
         "User": {
             "properties": {
                 "name": {
@@ -323,6 +411,17 @@
                     "description": "Senha do usu\u00e1rio",
                     "type": "string"
                 }
+            }
+        }
+    },
+    "parameters": {
+        "frete": {
+            "name": "frete",
+            "in": "body",
+            "description": "Adicionar frete",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/Freights"
             }
         }
     },
